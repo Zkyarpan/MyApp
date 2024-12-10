@@ -1,0 +1,66 @@
+@page "/todo"
+
+<h3>To-Do List</h3>
+
+<div class="todo-input-container">
+    <label for="new-task" class="todo-label">New Task:</label>
+    <input id="new-task" class="todo-input" @bind="newTask" placeholder="Enter task name..." />
+    <button class="todo-add-button" @onclick="AddOrUpdateTask">
+        @((taskToEdit == null) ? "Add" : "Update")
+    </button>
+</div>
+
+<ul class="todo-list">
+    @foreach (var task in tasks)
+    {
+            <li class="todo-item">
+                <span class="todo-text">@task.Name</span>
+                <button class="todo-edit-button" @onclick="(() => EditTask(task))">Edit</button>
+                <button class="todo-delete-button" @onclick="(() => DeleteTask(task))">Delete</button>
+            </li>
+    }
+</ul>
+
+
+@code {
+    private string newTask = string.Empty;
+    private TaskModel? taskToEdit = null;
+    private List<TaskModel> tasks = new();
+
+    private void AddOrUpdateTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            if (taskToEdit == null)
+            {
+                // Add a new task
+                tasks.Add(new TaskModel { Name = newTask });
+            }
+            else
+            {
+                // Update the existing task
+                taskToEdit.Name = newTask;
+                taskToEdit.IsEditing = false;
+                taskToEdit = null;
+            }
+            newTask = string.Empty;
+        }
+    }
+
+    private void EditTask(TaskModel task)
+    {
+        taskToEdit = task;
+        newTask = task.Name;
+        task.IsEditing = true;
+    }
+
+    private void DeleteTask(TaskModel task)
+    {
+        tasks.Remove(task);
+        if (taskToEdit == task)
+        {
+            taskToEdit = null;
+            newTask = string.Empty;
+        }
+    }
+}

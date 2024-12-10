@@ -84,3 +84,79 @@ h1:focus {
         padding-left: env(safe-area-inset-left);
     }
 }
+
+
+
+
+.todo-header {
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0;
+    color: #4CAF50;
+}
+
+.todo-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.todo-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.todo-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.todo-add-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.todo-text {
+    flex: 1;
+}
+
+.todo-edit-button,
+.todo-delete-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.todo-edit-button {
+    background-color: #2196F3;
+}
+
+.todo-delete-button {
+    background-color: #f44336;
+}
